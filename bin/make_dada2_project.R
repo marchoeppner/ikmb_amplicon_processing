@@ -103,7 +103,7 @@ dir.create(paste0(outdir,"/tax_assign"),recursive=T,showWarnings=F)
 
 bayesian_dbs=matrix(c("RDP16","SILVA132","GTDB86","/opt/rdp_train_set_16.fa.gz","/opt/silva_nr_v132_train_set.fa.gz","/opt/GTDB_bac_ssu_r86_dada2.fasta.gz"),ncol=2)
 bayesian_species_dbs=matrix(c("RDP16","SILVA132","/opt/rdp_species_assignment_16.fa.gz","/opt/silva_species_assignment_v132.fa.gz"),ncol=2)
-idtax_dbs=matrix(c("RDP16","SILVA132","GTDB86","/opt/RDP_v16-mod_March2018.RData","/opt/SILVA_SSU_r132_March2018.RData","/opt/GTDB_r86-mod_September2018.RData"),ncol=2)
+idtax_dbs=matrix(c("RDP16","SILVA132","GTDB86","/opt/RDP_v16-mod_March2018.RData","/opt/SILVA_SSU_r132_March2018.RData.gz","/opt/GTDB_r86-mod_September2018.RData"),ncol=2)
 
 if("Bayesian" %in% tax_assign$Algorithm){
 for(db in tax_assign[tax_assign$Algorithm=="Bayesian","Database"]){
