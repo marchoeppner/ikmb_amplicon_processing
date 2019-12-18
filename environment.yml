@@ -1,0 +1,13 @@
+# You can use this file to create a conda environment for this pipeline:
+#   conda env create -f environment.yml
+name: ikmb-amplicon-1.0
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - bioconductor-dada2=1.14
+  - cutadapt=2.7
+  - bioconductor-decipher
+  - bioconductor-biostrings=2.54.0
+  - bioconductor-shortread=1.44.0  
