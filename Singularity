@@ -25,7 +25,6 @@ From:nfcore/base
     assets/sh_general_release_dynamic_02.02.2019.fasta /opt
     assets/silva_species_assignment_v132.fa.gz /opt
     assets/silva_nr_v132_train_set.fa.gz /opt
-    assets/SILVA_SSU_r132_March2018.RData.gz /opt
 
 %post
 

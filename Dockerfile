@@ -16,7 +16,6 @@ COPY assets/rdp_train_set_16.fa.gz /opt
 COPY assets/sh_general_release_dynamic_02.02.2019.fasta /opt
 COPY assets/silva_species_assignment_v132.fa.gz /opt
 COPY assets/silva_nr_v132_train_set.fa.gz /opt
-COPY assets/SILVA_SSU_r132_March2018.RData.gz /opt
 
 RUN conda env create -f /environment.yml && conda clean -a
 ENV PATH /opt/conda/envs/ikmb-amplicon-1.0/bin:/opt:$PATH
