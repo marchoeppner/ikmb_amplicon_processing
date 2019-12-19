@@ -9,7 +9,7 @@ The container is available both through Dockerhub and Singularity hub.
 ## Running from online nodes (node has web access):
 
 ```
-singularity exec shub://ikmb/ikmb_amplicon_preprocessing:1.0 dada2_16S_workflow.R <read folder> <output folder>
+singularity exec shub://marchoeppner/ikmb_amplicon_preprocessing:1.0 dada2_16S_workflow.R <read folder> <output folder>
 ```
 
 ```
@@ -20,7 +20,7 @@ singularity exec docker://ikmb/ikmb_amplicon_preprocessing:1.0 dada2_16S_workflo
 
 1: Download the container
 ```
-singularity pull shub://ikmb/ikmb_amplicon_preprocessing:1.0
+singularity pull shub://marchoeppner/ikmb_amplicon_preprocessing:1.0
 ```
 
 2: Run using the local copy of the container
