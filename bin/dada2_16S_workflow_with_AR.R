@@ -93,56 +93,54 @@ is_v3v4=any(v3v4>.2)
 
 if(is_v3v4){
 
-if(outbase==outbase_std){outbase=paste0(outbase_std,"_V3V4")}
+  if(outbase==outbase_std){outbase=paste0(outbase_std,"_V3V4")}
 
-outdir=paste0(outbase,"/",runid)
+  outdir=paste0(outbase,"/",runid)
 
-cat(paste0("All output will be saved in: ",outdir,"\n"))
+  cat(paste0("All output will be saved in: ",outdir,"\n"))
 
-dir.create(outdir,recursive=T,showWarnings=F)
-dir.create(paste0(outdir,"/plots"),recursive=T,showWarnings=F)
-dir.create(paste0(outdir,"/errors"),recursive=T,showWarnings=F)
+  dir.create(outdir,recursive=T,showWarnings=F)
+  dir.create(paste0(outdir,"/plots"),recursive=T,showWarnings=F)
+  dir.create(paste0(outdir,"/errors"),recursive=T,showWarnings=F)
 
 
-cutadapt <- "cutadapt" # CHANGE ME to the cutadapt path on your machine
-system2(cutadapt, args = "--version") # Run shell commands from R
+  cutadapt <- "cutadapt" # CHANGE ME to the cutadapt path on your machine
+  system2(cutadapt, args = "--version") # Run shell commands from R
 
-path.cut <- file.path(outdir, "cutadapt")
-if(!dir.exists(path.cut)) dir.create(path.cut)
-fnFs.cut <- file.path(path.cut, basename(fnFs))
-fnRs.cut <- file.path(path.cut, basename(fnRs))
+  path.cut <- file.path(outdir, "cutadapt")
+  if(!dir.exists(path.cut)) dir.create(path.cut)
+  fnFs.cut <- file.path(path.cut, basename(fnFs))
+  fnRs.cut <- file.path(path.cut, basename(fnRs))
 
-FWD.RC <- dada2:::rc(FWD)
-REV.RC <- dada2:::rc(REV)
-# Trim FWD and the reverse-complement of REV off of R1 (forward reads)
-R1.flags <- paste("-g", FWD, "-a", REV.RC) 
-# Trim REV and the reverse-complement of FWD off of R2 (reverse reads)
-R2.flags <- paste("-G", REV, "-A", FWD.RC) 
-# Run Cutadapt
-for(i in seq_along(fnFs)) {
-  system2(cutadapt, args = c(R1.flags, R2.flags, "-n", 2, # -n 2 required to remove FWD and REV from reads
+  FWD.RC <- dada2:::rc(FWD)
+  REV.RC <- dada2:::rc(REV)
+  # Trim FWD and the reverse-complement of REV off of R1 (forward reads)
+  R1.flags <- paste("-g", FWD, "-a", REV.RC) 
+  # Trim REV and the reverse-complement of FWD off of R2 (reverse reads)
+  R2.flags <- paste("-G", REV, "-A", FWD.RC) 
+  # Run Cutadapt
+  for(i in seq_along(fnFs)) {
+    system2(cutadapt, args = c(R1.flags, R2.flags, "-n", 2, # -n 2 required to remove FWD and REV from reads
 			     "-j", threads, "--discard-untrimmed", 
                              "-o", fnFs.cut[i], "-p", fnRs.cut[i], # output files
                              fnFs[i], fnRs[i])) # input files
-}
-rbind(FWD.ForwardReads = sapply(FWD.orients, primerHits, fn = fnFs.cut[[1]]), 
+  }
+  rbind(FWD.ForwardReads = sapply(FWD.orients, primerHits, fn = fnFs.cut[[1]]), 
     FWD.ReverseReads = sapply(FWD.orients, primerHits, fn = fnRs.cut[[1]]), 
     REV.ForwardReads = sapply(REV.orients, primerHits, fn = fnFs.cut[[1]]), 
     REV.ReverseReads = sapply(REV.orients, primerHits, fn = fnRs.cut[[1]]))
 
-fnFs=fnFs.cut
-fnRs=fnRs.cut
-}
-
+  fnFs=fnFs.cut
+  fnRs=fnRs.cut
 
 }else{
-outdir=paste0(outbase,"/",runid)
+  outdir=paste0(outbase,"/",runid)
 
-cat(paste0("All output will be saved in: ",outdir,"\n"))
+  cat(paste0("All output will be saved in: ",outdir,"\n"))
 
-dir.create(outdir,recursive=T,showWarnings=F)
-dir.create(paste0(outdir,"/plots"),recursive=T,showWarnings=F)
-dir.create(paste0(outdir,"/errors"),recursive=T,showWarnings=F)
+  dir.create(outdir,recursive=T,showWarnings=F)
+  dir.create(paste0(outdir,"/plots"),recursive=T,showWarnings=F)
+  dir.create(paste0(outdir,"/errors"),recursive=T,showWarnings=F)
 
 }
 
@@ -167,11 +165,11 @@ filtRs <- file.path(filt_path, paste0(sample.names, "_R_filt.fastq.gz"))
 ## Filter  the forward and reverse reads:
 ## Important to remove primers and low quality regions
 if(is_v3v4){
-out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(265,245), ## Different settings tried,these are good for current primer constructs for MiSeq and HiSeq
+  out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(265,245), ## Different settings tried,these are good for current primer constructs for MiSeq and HiSeq
                      maxN=0, maxEE=c(2,2), truncQ=5, rm.phix=TRUE,
                      compress=TRUE, multithread=threads) #
 }else{
-out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(230,180), ## Different settings tried,these are good for current primer constructs for MiSeq and HiSeq
+  out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(230,180), ## Different settings tried,these are good for current primer constructs for MiSeq and HiSeq
                      trimLeft=c(5, 5),
                      maxN=0, maxEE=c(2,2), truncQ=5, rm.phix=TRUE,
                      compress=TRUE, multithread=threads) #

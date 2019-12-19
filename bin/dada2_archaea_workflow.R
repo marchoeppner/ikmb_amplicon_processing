@@ -15,7 +15,7 @@ if(is.na(args[2])){runid=strsplit(rev(strsplit(path, split="/")[[1]])[2],split="
 if(is.na(args[3])){outbase=outbase_std}else{outbase=gsub("/$","",args[3])}
 
 numbases=1e+09
-threads=16
+threads=8
 
 outdir=paste0(outbase,"/",runid)
 
