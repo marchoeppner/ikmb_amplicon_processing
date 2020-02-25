@@ -10,7 +10,7 @@
 
 args <- commandArgs(trailingOnly = TRUE)
 
-#.libPaths("/ifs/data/nfs_share/sukmb276/Microbiome/clean_data_from_dada2/R_Librarires/")
+#.libPaths("/work_ifs/sukmb276/Microbiome/clean_data_from_dada2/R_Librarires/")
 #args=c("AllChimpsTest","DADA2_Projects/AllChimpsTest/seqs2.txt")
 threads=16
 add_species_bayesian=T
@@ -19,8 +19,8 @@ proceed_when_missing=T
 project=args[1]
 
 if(is.na(args[3])){use_taxassign=c(1,3,4,6)}else{use_taxassign=as.numeric(strsplit(args[3],split=",")[[1]])}
-if(is.na(args[4])){outdirbase="/ifs/data/nfs_share/sukmb276/Microbiome/clean_data_from_dada2/DADA2_Projects/"}else{outdirbase=args[4]}
-if(is.na(args[5])){runsbasefolder="/ifs/data/nfs_share/sukmb276/Microbiome/clean_data_from_dada2/Runs_v.1.10"}else{runsbasefolder=args[5]}
+if(is.na(args[4])){outdirbase="/work_ifs/sukmb276/Microbiome/clean_data_from_dada2/DADA2_Projects/"}else{outdirbase=args[4]}
+if(is.na(args[5])){runsbasefolder="/work_ifs/sukmb276/Microbiome/clean_data_from_dada2/Runs_v.1.10"}else{runsbasefolder=args[5]}
 
 outdir=paste0(outdirbase,"/",project)
 dir.create(outdir,recursive=T,showWarnings=F)

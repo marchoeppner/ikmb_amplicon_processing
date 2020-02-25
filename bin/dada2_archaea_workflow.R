@@ -7,8 +7,8 @@
 ### TODO: create profiles (or automatic detection?) of V1/V2, V3/V4, Archaea, ITS, etc.
 
 args <- commandArgs(trailingOnly = TRUE)
-#args=c("/ifs/data/nfs_share/sukmb276/Microbiome/raw_data2/I00050_190401_M50181_0151_000000000-CDCF6/CB_16S_Archaea_II/",NA,NA)
-outbase_std="/ifs/data/nfs_share/sukmb276/Microbiome/clean_data_from_dada2/Runs_v.1.10_Archaea"
+#args=c("/work_ifs/sukmb276/Microbiome/raw_data2/I00050_190401_M50181_0151_000000000-CDCF6/CB_16S_Archaea_II/",NA,NA)
+outbase_std="/work_ifs/sukmb276/Microbiome/clean_data_from_dada2/Runs_v.1.10_Archaea"
 
 path=gsub("/$","",args[1])
 if(is.na(args[2])){runid=strsplit(rev(strsplit(path, split="/")[[1]])[2],split="_")[[1]][1]}else{runid=args[2]}
@@ -26,7 +26,7 @@ dir.create(paste0(outdir,"/plots"),recursive=T,showWarnings=F)
 dir.create(paste0(outdir,"/errors"),recursive=T,showWarnings=F)
 
 
-#.libPaths("/ifs/data/nfs_share/sukmb276/Microbiome/clean_data_from_dada2/R_Librarires/")
+#.libPaths("/work_ifs/sukmb276/Microbiome/clean_data_from_dada2/R_Librarires/")
 
 library(dada2)
 version=packageVersion("dada2")

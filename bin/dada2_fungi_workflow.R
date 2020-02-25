@@ -8,7 +8,7 @@
 
 args <- commandArgs(trailingOnly = TRUE)
 
-outbase_std="/ifs/data/nfs_share/sukmb276/Microbiome/clean_data_from_dada2/Runs_v.1.10_Fungi"
+outbase_std="/work_ifs/sukmb276/Microbiome/clean_data_from_dada2/Runs_v.1.10_Fungi"
 
 path=gsub("/$","",args[1])
 if(is.na(args[2])){runid=strsplit(rev(strsplit(path, split="/")[[1]])[2],split="_")[[1]][1]}else{runid=args[2]}
@@ -26,7 +26,7 @@ dir.create(paste0(outdir,"/plots"),recursive=T,showWarnings=F)
 dir.create(paste0(outdir,"/errors"),recursive=T,showWarnings=F)
 
 
-#.libPaths("/ifs/data/nfs_share/sukmb276/Microbiome/clean_data_from_dada2/R_Librarires/")
+#.libPaths("/work_ifs/sukmb276/Microbiome/clean_data_from_dada2/R_Librarires/")
 
 library(dada2)
 version=packageVersion("dada2")
